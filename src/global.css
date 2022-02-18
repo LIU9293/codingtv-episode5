@@ -1,0 +1,15 @@
+div {
+  box-sizing: border-box;
+  position: relative;
+}
+
+body {
+  background-color: #212529;
+  width: 100%;
+  min-height: 100%;
+  padding: 30px 0 0;
+}
+
+.App {
+  text-align: center;
+}
