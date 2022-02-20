@@ -8,6 +8,8 @@ const defaultConfig = [
 
 function TimerMultiple ({ cover, config = defaultConfig }) {
   const [runningId, setRunningId] = useState(null)
+  const [ended, setEnded] = useState([])
+  // const [runningStatus, setRunningStatus] = useState(config.map(i => ({ ...i, running: false })))
   const timerRef = useRef([])
 
   const pauseTimer = id => {
@@ -19,6 +21,13 @@ function TimerMultiple ({ cover, config = defaultConfig }) {
       pauseTimer(runningId)
     }
     setRunningId(id)
+    setEnded(ended.filter(i => i !== id))
+    // setRunningStatus(runningStatus.map(i => {
+    //   if (i.id === id) {
+    //     return { ...i, running: true }
+    //   }
+    //   return { ...i, running: false }
+    // }))
   }
 
   const onPause = () => {
@@ -26,7 +35,11 @@ function TimerMultiple ({ cover, config = defaultConfig }) {
   }
 
   const onEnd = id => {
-  
+    if (config.length === 2 && ended.length === 0) {
+      const another = config.find(i => i.id !== id)
+      timerRef.current[another.id].run()
+    }
+    setEnded(ended.concat([id]))
   }
   
   return (

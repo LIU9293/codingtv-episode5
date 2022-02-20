@@ -2,14 +2,14 @@ import React from 'react'
 import Timer from '../Timer'
 
 export default class TimerController extends React.Component {
-  constructor ({ speed = 100, ...props }) {
+  constructor (props) {
     super(props)
     this.state = {
       seconds: props.totalSeconds,
       isRunning: false,
     }
     this.t = null
-    this.speed = speed
+    this.speed = props.speed || 1000
   }
 
   componentDidUpdate () {
