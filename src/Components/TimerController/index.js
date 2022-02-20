@@ -9,7 +9,7 @@ export default class TimerController extends React.Component {
       isRunning: false,
     }
     this.t = null
-    this.speed = props.speed || 1000
+    this.speed = props.speed || 100
   }
 
   componentDidUpdate () {
